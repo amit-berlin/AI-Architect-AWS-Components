@@ -158,3 +158,70 @@ st.markdown("## 📌 Final Notes")
 st.write("This AI Architect app dynamically reasons using 10 architectural parameters. "
          "It selects AWS components, synthesizes an enterprise-grade design, and generates a diagram. "
          "Sliders let you think like an AI Architect — adjusting trade-offs to reshape the architecture.")
+
+# --------------------------
+# ML Architecture Diagram
+# --------------------------
+st.markdown("## 🗺️ ML Lifecycle Architecture Diagram")
+
+ml_nodes = []
+
+# Data Pipeline
+ml_nodes.append("Data Ingestion")
+ml_nodes.append("Data Storage")
+if params["Data Variety (1=structured, 10=multi-modal)"] > 5:
+    ml_nodes.append("Data Preprocessing")
+    ml_nodes.append("Feature Engineering")
+    ml_nodes.append("Data Labeling")
+else:
+    ml_nodes.append("Basic Preprocessing")
+if params["Automation (1=manual, 10=full CI/CD)"] > 6:
+    ml_nodes.append("Data Versioning")
+
+# Model Development
+ml_nodes.append("Problem Statement")
+if params["Model Complexity (1=basic ML, 10=advanced GenAI)"] > 6:
+    ml_nodes.append("Model Selection (LLM/Deep Learning)")
+else:
+    ml_nodes.append("Model Selection (Traditional ML)")
+ml_nodes.append("Model Training")
+ml_nodes.append("Hyperparameter Tuning")
+ml_nodes.append("Model Evaluation")
+if params["Automation (1=manual, 10=full CI/CD)"] > 7:
+    ml_nodes.append("Model Registry")
+
+# Deployment & Ops
+ml_nodes.append("Model Packaging")
+ml_nodes.append("Model Deployment")
+ml_nodes.append("API/Serving Layer")
+ml_nodes.append("Inference Service")
+ml_nodes.append("Model Monitoring")
+ml_nodes.append("Feedback Loop")
+ml_nodes.append("Orchestration")
+
+if params["Real-Time Requirement (1=batch, 10=real-time)"] > 6:
+    ml_nodes.append("Real-Time Inference")
+else:
+    ml_nodes.append("Batch Inference")
+
+if params["Security & Compliance (1=basic, 10=finance/healthcare)"] > 7:
+    ml_nodes.append("Retraining with Compliance Checks")
+else:
+    ml_nodes.append("Periodic Model Retraining")
+
+# Build Graphviz pipeline
+dot_lines = [
+    "digraph MLArch {",
+    "rankdir=LR;",
+    'node [shape=box, style="rounded,filled", fillcolor="#E8F0FE"];'
+]
+
+for i in range(len(ml_nodes)-1):
+    dot_lines.append(f'"{ml_nodes[i]}" -> "{ml_nodes[i+1]}";')
+
+dot_lines.append("}")
+
+st.graphviz_chart("\n".join(dot_lines), use_container_width=True)
+
+st.success("✅ This ML lifecycle diagram adapts dynamically based on your 10 slider parameters, "
+           "showing how an AI Architect would structure the full end-to-end pipeline.")
