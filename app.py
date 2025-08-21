@@ -454,6 +454,8 @@ st.info(
 # FINAL CTO-GRADE ARCHITECTURE SYNTHESIS (at bottom)
 # ---------------------------------------------------
 import networkx as nx
+import matplotlib.pyplot as plt
+
 
 st.markdown("## 🚀 Final CTO-Grade AWS ML Architecture")
 st.write("This section replaces the role of a human CTO. It generates a 100% accurate Machine Learning AWS architecture, "
