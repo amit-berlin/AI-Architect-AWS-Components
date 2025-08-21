@@ -225,3 +225,39 @@ st.graphviz_chart("\n".join(dot_lines), use_container_width=True)
 
 st.success("✅ This ML lifecycle diagram adapts dynamically based on your 10 slider parameters, "
            "showing how an AI Architect would structure the full end-to-end pipeline.")
+
+# Build Graphviz clustered pipeline
+dot_lines = [
+    "digraph MLArch {",
+    "rankdir=TB;",  # Top-to-Bottom for readability
+    'node [shape=box, style="rounded,filled", fillcolor="#E8F0FE", fontsize=12];',
+
+    # Data Pipeline cluster
+    "subgraph cluster_data {",
+    'label="📂 Data Pipeline"; fontsize=14; style="rounded,filled"; fillcolor="#F1F8E9";',
+]
+for step in [n for n in ml_nodes if "Data" in n or "Feature" in n or "Preprocessing" in n]:
+    dot_lines.append(f'"{step}";')
+dot_lines.append("}")
+
+# Model Development cluster
+dot_lines.append("subgraph cluster_model {")
+dot_lines.append('label="🤖 Model Development & Training"; fontsize=14; style="rounded,filled"; fillcolor="#E3F2FD";')
+for step in [n for n in ml_nodes if "Model" in n or "Problem" in n or "Hyperparameter" in n or "Evaluation" in n]:
+    dot_lines.append(f'"{step}";')
+dot_lines.append("}")
+
+# Deployment cluster
+dot_lines.append("subgraph cluster_deploy {")
+dot_lines.append('label="🚀 Deployment & MLOps"; fontsize=14; style="rounded,filled"; fillcolor="#FFF3E0";')
+for step in [n for n in ml_nodes if step not in ["Data Ingestion","Data Storage","Data Preprocessing","Feature Engineering","Data Labeling","Data Versioning","Basic Preprocessing","Problem Statement","Model Selection (LLM/Deep Learning)","Model Selection (Traditional ML)","Model Training","Hyperparameter Tuning","Model Evaluation","Model Registry"]]:
+    dot_lines.append(f'"{step}";')
+dot_lines.append("}")
+
+# Arrows between clusters
+dot_lines.append('"Data Ingestion" -> "Problem Statement";')
+dot_lines.append('"Model Evaluation" -> "Model Packaging";')
+
+dot_lines.append("}")
+
+st.graphviz_chart("\n".join(dot_lines), use_container_width=True)
