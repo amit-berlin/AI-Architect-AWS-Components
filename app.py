@@ -18,16 +18,16 @@ st.caption("Set 10 architectural parameters below. Agentic AI Architects will pr
 st.sidebar.header("⚙️ Configure AI Architecture Parameters")
 
 params = {
-    "Data Volume (1=GB, 10=PB)": st.sidebar.slider("Data Volume", 1, 10, 5),
-    "Data Variety (1=structured, 10=multi-modal)": st.sidebar.slider("Data Variety", 1, 10, 5),
-    "Real-Time Requirement (1=batch, 10=real-time)": st.sidebar.slider("Real-Time Requirement", 1, 10, 5),
-    "Model Complexity (1=basic ML, 10=advanced GenAI)": st.sidebar.slider("Model Complexity", 1, 10, 7),
-    "Scalability Need (1=small, 10=global enterprise)": st.sidebar.slider("Scalability Need", 1, 10, 8),
+    "Data Volume (1=GB, 10=PB)": st.sidebar.slider("Data Volume", 1, 10, 1),
+    "Data Variety (1=structured, 10=multi-modal)": st.sidebar.slider("Data Variety", 1, 10, 1),
+    "Real-Time Requirement (1=batch, 10=real-time)": st.sidebar.slider("Real-Time Requirement", 1, 10, 1),
+    "Model Complexity (1=basic ML, 10=advanced GenAI)": st.sidebar.slider("Model Complexity", 1, 10, 1),
+    "Scalability Need (1=small, 10=global enterprise)": st.sidebar.slider("Scalability Need", 1, 10, 1),
     "Security & Compliance (1=basic, 10=finance/healthcare)": st.sidebar.slider("Security & Compliance", 1, 10, 9),
-    "Integration Needs (1=standalone, 10=deep ERP/SAP)": st.sidebar.slider("Integration Needs", 1, 10, 6),
-    "Cost Sensitivity (1=performance, 10=cost savings)": st.sidebar.slider("Cost Sensitivity", 1, 10, 5),
-    "Automation (1=manual, 10=full CI/CD)": st.sidebar.slider("Automation & CI/CD", 1, 10, 7),
-    "User Experience (1=API only, 10=rich end-user app)": st.sidebar.slider("User Experience Priority", 1, 10, 6),
+    "Integration Needs (1=standalone, 10=deep ERP/SAP)": st.sidebar.slider("Integration Needs", 1, 10, 9),
+    "Cost Sensitivity (1=performance, 10=cost savings)": st.sidebar.slider("Cost Sensitivity", 1, 10, 1),
+    "Automation (1=manual, 10=full CI/CD)": st.sidebar.slider("Automation & CI/CD", 1, 10, 9),
+    "User Experience (1=API only, 10=rich end-user app)": st.sidebar.slider("User Experience Priority", 1, 10, 1),
 }
 
 # --------------------------
